@@ -11,7 +11,7 @@
 
 function s = switchmodel(th1, th2, th3, th4, th5, NUM, init) 
 
- 
+plotdata = (1:NUM); 
  if (init)
    t1data = rand(NUM,1) ;
    t2data = rand(NUM,1) ;
@@ -44,12 +44,12 @@ for count = 1: NUM
    t2sim(count) = 0;
   endif
   if t3data(count) > th3
-   t3sim(count) = 1 + exp(round(5*(t3data(count)-th3)) );
+   t3sim(count) = 1 + exp(round(2*(t3data(count)-th3)) );
   else
    t3sim(count) = 0;
   endif
   if t4data(count) > th4
-   t4sim(count) = 1 + exp(round(5*(t4data(count)-th4)) );
+   t4sim(count) = 1 + exp(round(2*(t4data(count)-th4)) );
   else
    t4sim(count) = 0;
   endif
@@ -71,10 +71,10 @@ count;
 endfor
 close
 figure(1);
-plot(t5data,s, "+", t5data,t5sim,"-");
+plot(t1data,s, "r*", t5data,t5sim,"g+");
 figure(2);
-plot(t5data,t2sim,"o", t5data,t4sim,"*" );
-[xx yy ] = meshgrid(t1data,t2data);
+plot(t2data,t2sim,"g+", t4data,t4sim,"r+" );
+[xx yy ] = meshgrid(t1data,t1data);
 [zz ] = meshgrid(s);
 size(xx);
 size(yy);
@@ -82,5 +82,5 @@ size(zz);
 figure(3)
 surf(xx,yy,zz);
 figure(4)
-plot3(t1data,t2data,s,"+");
+plot3(t1data,t5data,s,"r*");
 end
