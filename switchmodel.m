@@ -76,9 +76,11 @@ figure(2);
 plot(t5data,t2sim,"o", t5data,t4sim,"*" );
 [xx yy ] = meshgrid(t1data,t2data);
 [zz ] = meshgrid(s);
-size(xx)
-size(yy)
-size(zz)
+size(xx);
+size(yy);
+size(zz);
 figure(3)
 surf(xx,yy,zz);
+figure(4)
+plot3(t1data,t2data,s,"+");
 end
