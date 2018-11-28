@@ -9,7 +9,7 @@
 % rand -- For now not an input
 % switchmodel(0.75,0.75,0.6,0.6,0.2,100,0);
 
-function s = switchmodel(th1, th2, th3, th4, th5, NUM, init) 
+function [s me] = switchmodel(th1, th2, th3, th4, th5, NUM, init) 
 
 plotdata = (1:NUM); 
  if (init)
@@ -19,7 +19,7 @@ plotdata = (1:NUM);
   t4data = rand(NUM,1) ;
    t5data = rand(NUM,1) ;
 else
-   t1data = (1:NUM) / NUM ;
+ t1data = (1:NUM) / NUM ;
  t2data = (1:NUM) / NUM ;
  t3data = (1:NUM) / NUM ;
  t4data = (1:NUM) / NUM ;
@@ -54,9 +54,10 @@ for count = 1: NUM
    t4sim(count) = 0;
   endif
   if  (t5data(count) < th5 ) 
-    t5sim(count) = 1 + exp(round(5*(t5data(count)-1+th5)^2) );
+    t5sim(count) = 1 + exp(round(3*(t5data(count)-1+th5)^2) );
   elseif (t5data(count) > (1-th5) )
-    t5sim(count) = 1 + exp(round(2*(t5data(count)-th5)^2) );
+  %  t5sim(count) = 1 + exp(round(2*(t5data(count)-th5)^2) );
+     t5sim(count) = 0;
   else
     t5sim(count) = 0;
   endif
@@ -69,6 +70,8 @@ size(t1data);
 size(t5data);
 count;
 endfor
+%dont plot 
+if 0
 close
 figure(1);
 plot(t1data,s, "r*", t5data,t5sim,"g+");
@@ -80,7 +83,17 @@ size(xx);
 size(yy);
 size(zz);
 figure(3)
+
 surf(xx,yy,zz);
 figure(4)
 plot3(t1data,t5data,s,"r*");
+endif
+
+if (init)
+me = [t1data t2data t3data t4data t5data t1sim t2sim t3sim t4sim t5sim s];
+else
+me = [t1data; t2data; t3data ; t4data;  t5data; t1sim'; t2sim'; t3sim'; t4sim'; t5sim'; s']';
+endif
+
+
 end
