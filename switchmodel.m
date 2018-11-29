@@ -33,7 +33,7 @@ endif
  t5sim = zeros(NUM,1);
  s = zeros(NUM,1);
 for count = 1: NUM 
-  if t1data(count) > th1
+  if t1data(count) > th1 
    t1sim(count) = 1 + exp(round(10*(t1data(count)-th1)) );
   else
    t1sim(count) = 0;
