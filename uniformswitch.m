@@ -9,7 +9,7 @@
 % rand -- For now not an input
 % switchmodel(0.75,0.75,0.6,0.6,0.2,100,0);
 
-function [s me] = switchmodel(th1, th2, th3, th4, th5, NUM, init) 
+function [s me] = uniformswitch(th1, th2, th3, th4, th5, NUM, init) 
 
 plotdata = (1:NUM); 
  if (init)
@@ -33,31 +33,28 @@ endif
  t5sim = zeros(NUM,1);
  s = zeros(NUM,1);
 for count = 1: NUM 
-  if (t1data(count) > (th1) )
+  if (t1data(count) > (th1 + (rand()*0.1 - 0.05)) )
    t1sim(count) = 1 + exp(round(10*(t1data(count)-th1)) );
   else
    t1sim(count) = 0;
   endif
-  if t2data(count) > th2
+  if (t2data(count) > (th2 + (rand()*0.1 - 0.05)) )
    t2sim(count) = 1 + exp(round(10*(t2data(count)-th2)) );
   else
    t2sim(count) = 0;
   endif
-  if t3data(count) > th3
+  if (t3data(count) > (th3 + (rand()*0.1 - 0.05)))
    t3sim(count) = 1 + exp(round(2*(t3data(count)-th3)) );
   else
    t3sim(count) = 0;
   endif
-  if t4data(count) > th4
+  if (t4data(count) > (th4 + (rand()*0.1 - 0.05)) )
    t4sim(count) = 1 + exp(round(2*(t4data(count)-th4)) );
   else
    t4sim(count) = 0;
   endif
-  if  (t5data(count) < th5 ) 
+  if  (t5data(count) < ( th5 + (rand()*0.1 - 0.05))  ) 
     t5sim(count) = 1 + exp(round(3*(t5data(count)-1+th5)^2) );
-  elseif (t5data(count) > (1-th5) )
-  %  t5sim(count) = 1 + exp(round(2*(t5data(count)-th5)^2) );
-     t5sim(count) = 0;
   else
     t5sim(count) = 0;
   endif
